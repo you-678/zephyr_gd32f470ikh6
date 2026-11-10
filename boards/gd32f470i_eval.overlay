@@ -3,6 +3,11 @@
         led0 = &my_led1;
         led1 = &my_led2;
         led2 = &my_led3;
+        
+        /* 新增按键别名 */
+        sw0 = &user_button_0;
+        sw1 = &user_button_1;
+        sw2 = &user_button_2;
     };
 
     leds {
@@ -10,5 +15,23 @@
         my_led1: led_1 { gpios = <&gpioe 2 GPIO_ACTIVE_HIGH>; };
         my_led2: led_2 { gpios = <&gpioe 3 GPIO_ACTIVE_HIGH>; };
         my_led3: led_3 { gpios = <&gpiof 10 GPIO_ACTIVE_HIGH>; };
+    };
+
+    /* 新增按键节点 */
+    buttons {
+        compatible = "gpio-keys";
+
+        user_button_0: button_0 {
+            gpios = <&gpioa 0 GPIO_ACTIVE_LOW>; /* WAKEUP: PA0 */
+            label = "Wakeup Key";
+        };
+        user_button_1: button_1 {
+            gpios = <&gpioc 13 GPIO_ACTIVE_LOW>; /* TAMPER: PC13 */
+            label = "Tamper Key";
+        };
+        user_button_2: button_2 {
+            gpios = <&gpiob 14 GPIO_ACTIVE_LOW>; /* USER: PB14 */
+            label = "User Key";
+        };
     };
 };
